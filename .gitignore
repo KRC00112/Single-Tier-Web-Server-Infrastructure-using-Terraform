@@ -1,9 +1,8 @@
-*.tfstate
-*.tfstate.*
-*.tfstate.backup
-*.tfvars
-*.tfvars.json
 .terraform/
-crash.log
-crash.*.log
-ami.txt
+iam.txt
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+
+*.env
+.env

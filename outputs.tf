@@ -4,13 +4,40 @@ output "vpc_Id" {
 
 }
 
-output "subnet_Id"{
-	value=module.vpc.public_subnets
+output "subnet_Id" {
+  value = module.vpc.public_subnets
 
-} 
+}
 
-output "route_table_Ids"{
+output "route_table_Ids" {
 
-	value=module.vpc.database_route_table_ids
+  value = module.vpc.database_route_table_ids
+
+}
+
+output "security_groups_id_http" {
+
+
+  value = module.web_server_http_allowance_sg.security_group_id
+
+
+}
+
+output "security_groups_id_ssh" {
+
+
+  value = module.web_server_ssh_allowance_sg.security_group_id
+
+
+}
+
+output "aws_ami" {
+
+  value = data.aws_ami.al2023.id
+}
+
+output "aws_instance" {
+
+  value = resource.aws_instance.myInstance.id
 
 }
