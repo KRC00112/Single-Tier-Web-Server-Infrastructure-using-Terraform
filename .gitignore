@@ -6,3 +6,6 @@ iam.txt
 
 *.env
 .env
+
+single-tier-infra-key.pem
+terraform.tfvars
