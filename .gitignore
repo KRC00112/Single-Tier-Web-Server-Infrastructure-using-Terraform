@@ -7,5 +7,5 @@ iam.txt
 *.env
 .env
 
-single-tier-infra-key.pem
+infra-key
 

@@ -58,6 +58,13 @@ data "aws_ami" "al2023" {
 }
 
 
+resource "aws_key_pair" "myKey"{
+	key_name="infra-key"
+	public_key=file("infra-key.pub")
+
+}
+
+
 resource "aws_instance" "myInstance" {
 
   ami                         = data.aws_ami.al2023.id
@@ -65,7 +72,7 @@ resource "aws_instance" "myInstance" {
   subnet_id                   = module.vpc.public_subnets[0]
   vpc_security_group_ids      = [module.web_server_http_allowance_sg.security_group_id, module.web_server_ssh_allowance_sg.security_group_id]
   associate_public_ip_address = true
-  key_name                    = var.key_name
+  key_name                    = aws_key_pair.myKey.key_name
   user_data                   = file("userdata.tpl")
   user_data_replace_on_change = true
   tags = {
