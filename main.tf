@@ -2,6 +2,22 @@ provider "aws" {
   region = var.region
 }
 
+
+module "terraform_state_backend"{
+  source="cloudposse/tfstate-backend/aws"
+  namespace="terraform"
+  stage="state"
+  name="bucket"
+  attributes=["2138"]
+
+  terraform_backend_config_file_path="."
+  terraform_backend_config_file_name="backend.tf"
+  force_destroy=false
+
+
+}
+
+
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
   name   = "my-vpc"
@@ -81,27 +97,6 @@ resource "aws_instance" "myInstance" {
 
   }
 
-
-}
-
-
-
-resource "aws_s3_bucket" "terraBucket" {
-
-  bucket = "terraform-state-bucket-2138"
-
-}
-
-
-
-
-
-resource "aws_s3_object" "stateObject" {
-
-  key                    = "objectKey"
-  bucket                 = aws_s3_bucket.terraBucket.id
-  source                 = "terraform.tfstate"
-  server_side_encryption = "AES256"
 
 }
 
