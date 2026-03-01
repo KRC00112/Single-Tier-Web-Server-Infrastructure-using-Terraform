@@ -3,16 +3,16 @@ provider "aws" {
 }
 
 
-module "terraform_state_backend"{
-  source="cloudposse/tfstate-backend/aws"
-  namespace="terraform"
-  stage="state"
-  name="bucket"
-  attributes=["2138"]
+module "terraform_state_backend" {
+  source     = "cloudposse/tfstate-backend/aws"
+  namespace  = "terraform"
+  stage      = "state"
+  name       = "bucket"
+  attributes = ["2138"]
 
-  terraform_backend_config_file_path="."
-  terraform_backend_config_file_name="backend.tf"
-  force_destroy=false
+  terraform_backend_config_file_path = "."
+  terraform_backend_config_file_name = "backend.tf"
+  force_destroy                      = false
 
 
 }
