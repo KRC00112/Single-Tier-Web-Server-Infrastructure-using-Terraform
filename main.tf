@@ -58,9 +58,9 @@ data "aws_ami" "al2023" {
 }
 
 
-resource "aws_key_pair" "myKey"{
-	key_name="infra-key"
-	public_key=file("infra-key.pub")
+resource "aws_key_pair" "myKey" {
+  key_name   = "infra-key"
+  public_key = file("infra-key.pub")
 
 }
 
@@ -86,5 +86,23 @@ resource "aws_instance" "myInstance" {
 
 
 
+resource "aws_s3_bucket" "terraBucket" {
+
+  bucket = "terraform-state-bucket-2138"
+
+}
+
+
+
+
+
+resource "aws_s3_object" "stateObject" {
+
+  key                    = "objectKey"
+  bucket                 = aws_s3_bucket.terraBucket.id
+  source                 = "terraform.tfstate"
+  server_side_encryption = "AES256"
+
+}
 
 
