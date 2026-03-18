@@ -99,12 +99,8 @@ resource "aws_key_pair" "myKey" {
   public_key = file("infra-key.pub")
 }
 ```
-
-**This will cause a conflict if:**
-- Someone else has already created a key pair named `infra-key` in the same AWS account and region
-- This is deployed to multiple environments (e.g. `dev` and `prod`) within the same account
-
-If a `KeyPair already exists` error appears, either delete the conflicting key pair from the AWS console/CLI, or rename the key in `main.tf` to something unique (e.g. `infra-key-dev-2138`) and regenerate the local key files to match.
+- Create own key-pair using the `ssh-keygen` command
+- include the names of your own keys in the configuration instead of `infra-key` and `infra-key.pub`.
 
 ---
 
