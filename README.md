@@ -28,7 +28,7 @@ This project provisions a simple but production-ready AWS web infrastructure: a 
 ### 1. Generate the SSH key pair
 
 ```bash
-ssh-keygen -t rsa -f infra-key
+ssh-keygen
 ```
 
 This produces `infra-key` (private) and `infra-key.pub` (public). The `.pub` file is referenced by Terraform and is safe to commit. **Never commit the private key (`infra-key`).**
@@ -99,7 +99,7 @@ resource "aws_key_pair" "myKey" {
   public_key = file("infra-key.pub")
 }
 ```
-Create own key-pair using the `ssh-keygen` command and include the name of your own public and private keys in the configuration instead of `infra-key` and 
+Create own key-pair using the `ssh-keygen` command and include the name of your own public and private keys in the configuration instead of `infra-key` and `infra-key.pub`
 
 ---
 
