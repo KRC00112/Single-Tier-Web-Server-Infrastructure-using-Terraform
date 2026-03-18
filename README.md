@@ -99,8 +99,7 @@ resource "aws_key_pair" "myKey" {
   public_key = file("infra-key.pub")
 }
 ```
-- Create own key-pair using the `ssh-keygen` command
-- include the names of your own keys in the configuration instead of `infra-key` and `infra-key.pub`.
+Create own key-pair using the `ssh-keygen` command and include the name of your own public and private keys in the configuration instead of `infra-key` and 
 
 ---
 
